@@ -1,0 +1,65 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+using Xamarin.Forms;
+
+// coded by Alex Sheets
+
+namespace SoundScout.ViewModel.Helpers
+{
+	public interface IFirestore
+	{
+		string getName(string userID);
+		int getAge(string userID);
+		string getLocation(string userID);
+		string getFavoriteGenre(string userID);
+		Task<bool> PlaceProfileInfo();
+		int GetMatchChemistry();
+	}
+	
+	class Profile
+	{
+		private static IFirestore profile = DependencyService.Get<IFirestore>();
+		
+		public static string getName(string userID)
+		{
+			return profile.getName(userID);
+		}
+		
+		public static int getAge()
+		{
+			return profile.getAge();
+		}
+		
+		public static string getLocation()
+		{
+			return profile.getLocation();
+		}
+		
+		public static string getFavoriteGenre()
+		{
+			return profile.getFavoriteGenre();
+		}
+		
+		public async Task<bool> PlaceProfileInfo()
+		{
+			try
+			{
+				return await profle.PlaceProfilePicture();
+			}
+			catch (Exception e)
+			{
+				await App.Current.MainPage.DisplayAlert("Error!", e.Message, "O.K.");
+				return false;
+			}
+		}
+		
+		public static int GetMatchChemistry() {
+			return profile.GetMatchChemistry();
+		}
+		
+	}
+		
+		
+		
