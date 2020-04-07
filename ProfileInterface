@@ -11,12 +11,12 @@
     <ScrollView>
        
         <StackLayout BackgroundColor="AliceBlue">
-        <!-- Place new controls here -->
             <BoxView HeightRequest="15" />
             <SearchBar Placeholder="Search. . ."
                        PlaceholderColor="Lavender"
                        HorizontalTextAlignment="Center" />
-            <Label Text="Steve"
+	<!-- Place name in label here -->
+            <Label Text=""
                    HorizontalOptions="Center" VerticalOptions="Start"
                    FontSize="36" FontAttributes="Bold" />
             <Frame HeightRequest="200" WidthRequest="200" CornerRadius="100"
