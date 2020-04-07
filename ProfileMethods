@@ -1,0 +1,93 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Firebase.Firestore;
+using MySubscriptions.ViewModel.Helpers;
+using Xamarin.Forms;
+
+// coded by Alex Sheets
+
+namespace SoundScout.Profile.Dependencies
+{
+	class Profile : IFirestore
+	{
+		FirestoreDb db = FirestoreDb.Create(SoundScout);
+		
+		public string getName(string userID)
+		{
+			DocumentReference docRef = db.Collection("users").Document(userID);
+			DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
+			
+			if (snapshot.Exists)
+			{
+				string name = snapshot.GetValue<string>("Name.First");
+				return name;
+			}
+			else
+			{
+				Console.WriteLine("Error!", snapshot.Id);
+			}
+		}
+		
+		public int getAge(string userID)
+		{
+			DocumentReference docRef = db.Collection("users").Document(userID);
+			DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
+			
+			if (snapshot.Exists)
+			{
+				string age = snapshot.GetValue<int>("Age");
+				return age;
+			}
+			else
+			{
+				Console.WriteLine("Error!", snapshot.Id);
+			}
+		}
+		
+		public string getLocation(string userID)
+		{
+			DocumentReference docRef = db.Collection("users").Document(userID);
+			DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
+			
+			if (snapshot.Exists)
+			{
+				string location = snapshot.GetValue<string>("Location");
+				return location;
+			}
+			else
+			{
+				Console.WriteLine("Error!", snapshot.Id);
+			}
+		}
+		
+		public string getFavoriteGenre(string userID)
+		{
+			DocumentReference docRef = db.Collection("users").Document(userID);
+			DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
+			
+			if (snapshot.Exists)
+			{
+				string genre = snapshot.GetValue<string>("Genre.1");
+				return genre;
+			}
+			else
+			{
+				Console.WriteLine("Error!", snapshot.Id);
+			}
+		}
+		
+		// unfinished
+		public async Task<bool> PlaceProfileInfo(string name, int age, string location, string genre)
+		{
+			//await
+		}
+		
+		//unfinished
+		public int GetMatchChemistry(string user1ID, string user2ID)
+		{
+			//await
+		}
+	}
